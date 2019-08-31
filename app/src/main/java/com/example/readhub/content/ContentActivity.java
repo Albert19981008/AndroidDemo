@@ -21,16 +21,35 @@ public class ContentActivity extends AppCompatActivity {
     private TextView mSiteSource;    //作者栏
     private WebView mWebView;        //webView开网页
 
-
-    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
+        initViews();
+        bindData();
+    }
 
+    private void initViews() {
         mHeadLine = this.findViewById(R.id.item_headline);
         mSiteSource = this.findViewById(R.id.item_siteSource);
+        mWebView = this.findViewById(R.id.item_web_view);
+        initWebView();
+    }
 
+    @SuppressLint("SetJavaScriptEnabled")
+    private void initWebView() {
+        //加载网络请求权限
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setUseWideViewPort(true);
+        mWebView.getSettings().setLoadWithOverviewMode(true);
+        mWebView.getSettings().setDomStorageEnabled(true);
+        mWebView.getSettings().setDefaultTextEncodingName("UTF-8");
+        mWebView.getSettings().setAllowContentAccess(true);
+        mWebView.getSettings().setAllowFileAccess(true);
+        mWebView.setWebViewClient(new WebViewClient());
+    }
+
+    private void bindData() {
         //得到文章详细信息
         Intent intent = getIntent();
         String siteSource = intent.getStringExtra("siteSource");
@@ -40,22 +59,6 @@ public class ContentActivity extends AppCompatActivity {
         //显示标题和来源
         mHeadLine.setText(headline);
         mSiteSource.setText(siteSource);
-
-        //WebView用于打开网页
-        mWebView = this.findViewById(R.id.item_web_view);
-
-        //加载网络请求权限
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.getSettings().setUseWideViewPort(true);
-        mWebView.getSettings().setLoadWithOverviewMode(true);
-        mWebView.getSettings().setDomStorageEnabled(true);
-        mWebView.getSettings().setDefaultTextEncodingName("UTF-8");
-        mWebView.getSettings().setAllowContentAccess(true);
-        mWebView.getSettings().setAllowFileAccess(true);
-
-        mWebView.setWebViewClient(new WebViewClient());
-
         mWebView.loadUrl(url);
     }
-
 }
