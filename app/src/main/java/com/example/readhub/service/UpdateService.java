@@ -86,11 +86,7 @@ public class UpdateService extends Service {
                     //请求成功的回调
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        if (response.code() == 200) {
-                            //网络请求正常
-                            Log.i("http code: ", "200");
-
-                        } else {
+                        if (response.code() != 200) {
                             //网络请求异常
                             Log.e("httpErrorCode: ", String.valueOf(response.code()));
                         }
@@ -100,15 +96,12 @@ public class UpdateService extends Service {
                         sTimeStamps[newsType] = JSONParser.parseJSONAndReturnMinTime(res, HTTP_REQUESTS[newsType], list);
                         NEWS_REPOSITORY.insertNewsIfNotExist(list);
 
-                        Log.i("timeStamp", newsType + ":  " + sTimeStamps[newsType]);
-
                         Message msg = Message.obtain();
                         msg.what = newsType;
-
-                        mHandler.sendMessage(msg);  //handler数据更新UI
+                        mHandler.sendMessage(msg);  //发送信息以重复这个步骤 加载更多新闻
                     }
 
-                }); //用当前时间戳发送网络请求获得数据);
+                }); //用当前时间戳发送网络请求获得数据
     }
 
     @Override
