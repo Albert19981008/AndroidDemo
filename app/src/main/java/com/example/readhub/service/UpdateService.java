@@ -11,7 +11,7 @@ import android.util.Log;
 import com.example.readhub.Injection;
 import com.example.readhub.data.News;
 import com.example.readhub.data.NewsRepository;
-import com.example.readhub.list.JSONParser;
+import com.example.readhub.list.helper.JSONParser;
 
 import java.io.IOException;
 import java.util.ArrayList;

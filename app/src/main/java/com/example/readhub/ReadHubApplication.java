@@ -9,15 +9,15 @@ import android.content.Context;
  */
 public class ReadHubApplication extends Application {
 
-    private static Context sContext;
+    private static Application sApplication;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sContext = getApplicationContext();
+        sApplication = this;
     }
 
-    public static Context getContext() {
-        return sContext;
+    public static Context getApplication() {
+        return sApplication;
     }
 }

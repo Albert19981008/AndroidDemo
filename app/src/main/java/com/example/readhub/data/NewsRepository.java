@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.readhub.executor.AppExecutors;
-import com.example.readhub.list.NetworkHelper;
+import com.example.readhub.list.helper.NetworkHelper;
 
 import java.util.List;
 
@@ -78,7 +78,6 @@ public class NewsRepository {
                     @Override
                     public void run() {
                         if (newsList.isEmpty()) {
-                            // This will be called if the table is new or just empty.
                             callback.onDataNotAvailable();
                         } else {
                             callback.onNewsLoaded(newsList);
@@ -87,7 +86,6 @@ public class NewsRepository {
                 });
             }
         };
-
         mAppExecutors.diskIO().execute(runnable);
     }
 
@@ -122,7 +120,6 @@ public class NewsRepository {
                 Log.i("db", "insert");
             }
         };
-
         mAppExecutors.diskIO().execute(runnable);
     }
 
@@ -142,7 +139,6 @@ public class NewsRepository {
                 NetworkHelper.loadNewsWithOkHttp(httpRequest, theTimeStamp, callback);
             }
         };
-
         mAppExecutors.networkIO().execute(runnable);
     }
 }

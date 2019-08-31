@@ -1,4 +1,4 @@
-package com.example.readhub.list;
+package com.example.readhub.list.helper;
 
 import com.example.readhub.data.News;
 

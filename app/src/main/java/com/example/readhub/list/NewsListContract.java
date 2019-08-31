@@ -11,7 +11,7 @@ import com.example.readhub.data.News;
 
 
 /**
- * 接口类 标识MVP架构中Presenter和View间的协议
+ * 接口类 标识MVP架构中 Presenter 和 View 间的协议
  */
 public interface NewsListContract {
 

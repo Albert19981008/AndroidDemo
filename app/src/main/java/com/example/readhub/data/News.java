@@ -8,15 +8,15 @@ import android.support.annotation.NonNull;
  */
 public class News {
 
-    private String mHeadline;  //文章标题
+    private String mHeadline;   //文章标题
 
-    private String mUrl;  //文章链接地址
+    private String mUrl;        //文章链接地址
 
     private String mSiteSource; //文章来源网站
 
-    private String mType;      //新闻的种类
+    private String mType;       //新闻的种类
 
-    private long mTimeStamp;  //该文章发布的时间戳
+    private long mTimeStamp;    //该文章发布的时间戳
 
     private int mId;   //其在网站上的id
 

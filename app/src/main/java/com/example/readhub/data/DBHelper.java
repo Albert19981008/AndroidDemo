@@ -13,10 +13,10 @@ import com.example.readhub.ReadHubApplication;
 public class DBHelper extends SQLiteOpenHelper {
 
     //单例模式 懒加载
-    private static volatile DBHelper INSTANCE;
+    private static volatile DBHelper instance;
 
     //DB版本号
-    private static final int VERSION = 12;
+    private static final int VERSION = 1;
 
     //建表的整个String
     private static final String CREATE_NEWS =
@@ -42,15 +42,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //单例类
     static DBHelper getInstance() {
-
-        if (INSTANCE == null) {
+        if (instance == null) {
             synchronized (DBHelper.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new DBHelper(ReadHubApplication.getContext(), "newsDB.db", null, VERSION);
+                if (instance == null) {
+                    instance = new DBHelper(ReadHubApplication.getApplication(), "newsDB.db", null, VERSION);
                 }
             }
         }
-        return INSTANCE;
+        return instance;
     }
 
 
@@ -75,7 +74,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table News");
-
         db.execSQL(CREATE_NEWS);
         db.execSQL(CREATE_INDEX);
     }

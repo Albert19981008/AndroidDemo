@@ -17,19 +17,17 @@ import com.example.readhub.service.UpdateService;
  */
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //加载布局
         setContentView(R.layout.activity_main);
 
+        initView();
+        startUpdateService();
+    }
 
-        //更新新闻的服务
-        Intent StartServiceIntent = new Intent(this, UpdateService.class);
-        startService(StartServiceIntent);
-
+    private void initView() {
         //登录按钮
         Button buttonLogin = findViewById(R.id.button_login);
 
@@ -41,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    //开启更新新闻的服务
+    private void startUpdateService() {
+        Intent StartServiceIntent = new Intent(this, UpdateService.class);
+        startService(StartServiceIntent);
     }
 }
 
