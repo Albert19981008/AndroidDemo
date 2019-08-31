@@ -56,12 +56,10 @@ public class UpdateService extends Service {
         @Override
         public void handleMessage(Message msg) {
             if (isValidNewsType(msg.what)) {
-
                 if ((System.currentTimeMillis() / 1000 - sTimeStamps[msg.what]) < FIVE_DAYS) {
                     loadNewsAndInsertIntoDB(msg.what);
                 }
             }
-
         }
     }
 
@@ -82,14 +80,12 @@ public class UpdateService extends Service {
                     //请求失败的回调
                     @Override
                     public void onFailure(Call call, IOException e) {
-
                         Log.i("network", "没有联网 暂时无法更新！");
                     }
 
                     //请求成功的回调
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-
                         if (response.code() == 200) {
                             //网络请求正常
                             Log.i("http code: ", "200");
@@ -106,7 +102,6 @@ public class UpdateService extends Service {
                         NEWS_REPOSITORY.insertNewsIfNotExist(list);
 
                         Log.i("timeStamp", newsType + ":  " + sTimeStamps[newsType]);
-
 
                         Message msg = Message.obtain();
                         msg.what = newsType;
@@ -137,10 +132,8 @@ public class UpdateService extends Service {
 
     @Override
     public void onDestroy() {
-
         //退出时丢掉所有消息 防内存泄漏
         mHandler.removeCallbacksAndMessages(null);
-
         super.onDestroy();
     }
 
