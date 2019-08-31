@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:padding="8dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".content.ContentActivity"
+              android:orientation="vertical">
+
+
+    <TextView
+            android:id="@+id/item_headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:padding="6dp"
+            android:text="标题栏"
+            android:textColor="@android:color/black"
+            android:textSize="22dp"/>
+
+    <TextView
+            android:id="@+id/item_siteSource"
+            android:paddingLeft="16dp"
+            android:paddingBottom="8dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="作者栏"
+            android:textSize="14sp"/>
+
+    <WebView
+            android:id="@+id/item_web_view"
+            android:padding="12dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+</LinearLayout>
