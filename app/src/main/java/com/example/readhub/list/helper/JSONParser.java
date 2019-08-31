@@ -63,11 +63,7 @@ public class JSONParser {
             }
 
         } catch (JSONException e) {
-
             e.printStackTrace();
-
-            minTimeStamp = FAILED;  //失败
-
         }
         return minTimeStamp;
     }

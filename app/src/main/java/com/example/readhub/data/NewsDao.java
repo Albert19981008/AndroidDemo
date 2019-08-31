@@ -106,15 +106,12 @@ public class NewsDao {
                 String siteSource = cursor.getString(cursor.getColumnIndex("siteSource"));
                 String url = cursor.getString(cursor.getColumnIndex("url"));
                 int timeStamp = cursor.getInt(cursor.getColumnIndex("timeStamp"));
-                //String type = cursor.getString(cursor.getColumnIndex("type"));
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
 
                 list.add(new News(headline, siteSource, url, type, timeStamp, id));
 
             } while (cursor.moveToNext());
-
         }
-
         cursor.close();
         return list;
     }

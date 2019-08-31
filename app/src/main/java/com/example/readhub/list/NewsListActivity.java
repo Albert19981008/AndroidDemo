@@ -35,13 +35,9 @@ public class NewsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_news_list);
-
         initFragmentList();
-
         initViewPager();
-
         initTab();
     }
 
@@ -96,7 +92,6 @@ public class NewsListActivity extends AppCompatActivity {
      * 初始化导航栏
      */
     private void initTab() {
-
         //导航栏
         TabLayout mTabLayout = findViewById(R.id.tabs);
         mTabLayout.setupWithViewPager(mViewPager);

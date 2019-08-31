@@ -15,7 +15,7 @@ import java.util.List;
 public class NewsRepository {
 
     //单例类
-    private static volatile NewsRepository INSTANCE;
+    private static volatile NewsRepository instance;
 
     //数据层
     private NewsDao mNewsDao;
@@ -38,14 +38,14 @@ public class NewsRepository {
      */
     public static NewsRepository getInstance(@NonNull AppExecutors appExecutors,
                                              @NonNull NewsDao newsDao) {
-        if (INSTANCE == null) {
+        if (instance == null) {
             synchronized (NewsRepository.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new NewsRepository(appExecutors, newsDao);
+                if (instance == null) {
+                    instance = new NewsRepository(appExecutors, newsDao);
                 }
             }
         }
-        return INSTANCE;
+        return instance;
     }
 
 
@@ -67,8 +67,10 @@ public class NewsRepository {
      * @param endTime    想得到新闻的截止时间（得到的全是在此之前的新闻）
      * @param callback   需要实现的回调接口
      */
-    public void getLatestNews(int numOfPiece, @NonNull String type,
-                              long endTime, @NonNull final LoadNewsCallback callback) {
+    public void getLatestNews(int numOfPiece,
+                              @NonNull String type,
+                              long endTime,
+                              @NonNull final LoadNewsCallback callback) {
 
         Runnable runnable = new Runnable() {
             @Override
@@ -131,7 +133,8 @@ public class NewsRepository {
      * @param callback     回调接口
      */
     public void loadNewsWithOkHttp(@NonNull String httpRequest,
-                                   long theTimeStamp, @NonNull okhttp3.Callback callback) {
+                                   long theTimeStamp,
+                                   @NonNull okhttp3.Callback callback) {
 
         Runnable runnable = new Runnable() {
             @Override

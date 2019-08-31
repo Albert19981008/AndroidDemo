@@ -96,7 +96,6 @@ public class UpdateService extends Service {
                         }
                         String res = response.body().string();  //得到JSON格式的String
 
-
                         List<News> list = new ArrayList<>();
                         sTimeStamps[newsType] = JSONParser.parseJSONAndReturnMinTime(res, HTTP_REQUESTS[newsType], list);
                         NEWS_REPOSITORY.insertNewsIfNotExist(list);
@@ -112,21 +111,14 @@ public class UpdateService extends Service {
                 }); //用当前时间戳发送网络请求获得数据);
     }
 
-    // 要明确这里并没有必要用Service，这里只是为了多掌握以下Service使用
-    // 了解了onStartCommand不同返回值的含义吗 ？
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        UpdateService.loadNewsAndInsertIntoDB(TYPE_NUM[0]);
-
-        UpdateService.loadNewsAndInsertIntoDB(TYPE_NUM[1]);
-
-        UpdateService.loadNewsAndInsertIntoDB(TYPE_NUM[2]);
-
+        for (int value : TYPE_NUM) {
+            UpdateService.loadNewsAndInsertIntoDB(value);
+        }
         //删除五天前的数据
         NEWS_REPOSITORY.deleteOldNews(FIVE_DAYS);
-
         return super.onStartCommand(intent, flags, startId);
     }
 
