@@ -1,9 +1,5 @@
-package com.example.readhub.util;
+package com.example.readhub.executor;
 
-
-import android.os.Handler;
-import android.os.Looper;
-import android.support.annotation.NonNull;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -33,7 +29,8 @@ public class AppExecutors {
     }
 
     public AppExecutors() {
-        this(new DiskIOThreadExecutor(), Executors.newFixedThreadPool(THREAD_COUNT),
+        this(new DiskIOThreadExecutor(),
+                Executors.newFixedThreadPool(THREAD_COUNT),
                 new MainThreadExecutor());
     }
 
@@ -47,14 +44,5 @@ public class AppExecutors {
 
     public Executor mainThread() {
         return mainThread;
-    }
-
-    private static class MainThreadExecutor implements Executor {
-        private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
-
-        @Override
-        public void execute(@NonNull Runnable command) {
-            mainThreadHandler.post(command);
-        }
     }
 }

@@ -61,7 +61,6 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         db.execSQL(CREATE_NEWS);
         db.execSQL(CREATE_INDEX);
     }
@@ -75,7 +74,6 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         db.execSQL("drop table News");
 
         db.execSQL(CREATE_NEWS);

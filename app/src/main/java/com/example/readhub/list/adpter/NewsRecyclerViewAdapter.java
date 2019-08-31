@@ -23,8 +23,6 @@ import java.util.List;
  */
 public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerViewAdapter.ViewHolder> {
 
-    private static ViewHolder sTagViewHolder;
-
     //数据列表
     private List<News> mDataList;
 
@@ -40,7 +38,6 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
      */
     @Override
     public int getItemCount() {
-
         return mDataList == null ? 0 : (mDataList.size());
     }
 
@@ -84,15 +81,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
             mRoot = itemView.findViewById(R.id.root);
             mTvTitle = itemView.findViewById(R.id.item_headline);
             mTvSiteSource = itemView.findViewById(R.id.item_siteSource);
-
-            if (sTagViewHolder == null) {
-                sTagViewHolder = this;
-            }
-//            if (sTagViewHolder == this) {
-//                mTvTitle.setTextColor(Color.rgb(0xff, 0, 0));
-//            }
         }
-
     }
 
 

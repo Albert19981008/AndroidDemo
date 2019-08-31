@@ -3,7 +3,7 @@ package com.example.readhub.data;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.readhub.util.AppExecutors;
+import com.example.readhub.executor.AppExecutors;
 import com.example.readhub.list.NetworkHelper;
 
 import java.util.List;
@@ -104,7 +104,6 @@ public class NewsRepository {
                 Log.i("db", "delete");
             }
         };
-
         mAppExecutors.diskIO().execute(runnable);
     }
 

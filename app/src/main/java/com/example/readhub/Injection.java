@@ -3,7 +3,7 @@ package com.example.readhub;
 
 import com.example.readhub.data.NewsDao;
 import com.example.readhub.data.NewsRepository;
-import com.example.readhub.util.AppExecutors;
+import com.example.readhub.executor.AppExecutors;
 
 
 /**
