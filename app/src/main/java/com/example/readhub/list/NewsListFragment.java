@@ -13,13 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.readhub.R;
+import com.example.readhub.data.NewsEntity;
 import com.example.readhub.list.adpter.NewsRecyclerViewAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-
-import com.example.readhub.data.NewsEntity;
 
 /**
  * 每种新闻的列表Fragment，也是MVP模式中新闻页的View
@@ -81,7 +80,7 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                //判断当前是否没再加载且已经触底
+                //触底时候去 加载更多新闻
                 if (!mPresenter.getLoadingStatus() && !recyclerView.canScrollVertically(1)) {
                     mPresenter.loadMore();
                 }

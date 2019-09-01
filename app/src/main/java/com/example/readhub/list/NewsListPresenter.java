@@ -124,9 +124,6 @@ public class NewsListPresenter implements NewsListContract.Presenter {
      * 通知View新闻数量已经改变
      */
     private void notifyItemChanged() {
-
-        // 这里应该从0 start吗？ RecyclerView相比老旧的ListView一个改进就是局部刷新，你这样还是让整体刷新了
-        // 了解下 《RecyclerView的局部刷新》
         mFragment.notifyItemChanged(mListSize, mNewsList.size());
         mListSize = mNewsList.size();  //刷新当前新闻List的大小
     }
@@ -137,13 +134,10 @@ public class NewsListPresenter implements NewsListContract.Presenter {
     private void initData() {
 
         if (mNewsList == null) {
-
             mNewsList = new ArrayList<>();
-
             mFragment.initRecyclerViewAdapter(mContext, mNewsList);
 
             long endTime = System.currentTimeMillis();
-
             mNewsRepository.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime,
                     new NewsRepository.LoadNewsCallback() {
 
