@@ -20,6 +20,8 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Response;
 
+import static com.example.readhub.Constants.CATEGORIES;
+
 
 /**
  * 更新三类新闻数据的Service，每次程序运行时候启动，
@@ -30,7 +32,7 @@ public class UpdateService extends Service {
     private static final int[] TYPE_NUM = {0, 1, 2};
 
     //三种新闻对应的需要注入的HTTP请求
-    private static final String[] HTTP_REQUESTS = new String[]{"news", "technews", "blockchain"};
+    private static final String[] HTTP_REQUESTS = CATEGORIES;
 
     //当前时间戳
     private static final long TIME_STAMP_NOW = System.currentTimeMillis() / 1000;
