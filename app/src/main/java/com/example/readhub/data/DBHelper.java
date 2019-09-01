@@ -30,9 +30,9 @@ public class DBHelper extends SQLiteOpenHelper {
                     + "type text)";
 
     //以时间戳这一列建立索引
-    private static final String CREATE_INDEX =
+    private static final String CREATE_INDEX = "create index timeStamp on News (timeStamp)";
 
-            "create index timeStamp on News (timeStamp)";
+    private static final String DROP_TABLE = "drop table News";
 
 
     private DBHelper(Context context, String name,
@@ -73,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table News");
+        db.execSQL(DROP_TABLE);
         db.execSQL(CREATE_NEWS);
         db.execSQL(CREATE_INDEX);
     }

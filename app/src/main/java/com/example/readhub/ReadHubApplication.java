@@ -1,7 +1,6 @@
 package com.example.readhub;
 
 import android.app.Application;
-import android.content.Context;
 
 
 /**
@@ -17,7 +16,7 @@ public class ReadHubApplication extends Application {
         sApplication = this;
     }
 
-    public static Context getApplication() {
+    public static Application getApplication() {
         return sApplication;
     }
 }

@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import com.example.readhub.data.News;
+import com.example.readhub.data.NewsEntity;
 
 /**
  * 每种新闻的列表Fragment，也是MVP模式中新闻页的View
@@ -110,7 +110,7 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
      * @param newsList 新闻数据列表
      */
     @Override
-    public void initRecyclerViewAdapter(Context context, List<News> newsList) {
+    public void initRecyclerViewAdapter(Context context, List<NewsEntity> newsList) {
 
         mRecyclerViewAdapter = new NewsRecyclerViewAdapter(context, newsList);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);

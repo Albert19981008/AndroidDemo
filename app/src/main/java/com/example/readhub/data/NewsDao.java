@@ -18,9 +18,9 @@ public class NewsDao {
      *
      * @return 所有新闻的列表
      */
-    public List<News> getAllNews() {
+    public List<NewsEntity> getAllNews() {
 
-        List<News> list = new ArrayList<>();
+        List<NewsEntity> list = new ArrayList<>();
 
         DBHelper helper = DBHelper.getInstance();
 
@@ -38,7 +38,7 @@ public class NewsDao {
                 String type = cursor.getString(cursor.getColumnIndex("type"));
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
 
-                list.add(new News(headline, siteSource, url, type, timeStamp, id));
+                list.add(new NewsEntity(headline, siteSource, url, type, timeStamp, id));
 
             } while (cursor.moveToNext());
 
@@ -54,13 +54,13 @@ public class NewsDao {
      *
      * @param newsList 要插入的新闻列表
      */
-    void insertNewsIfNotExist(@NonNull List<News> newsList) {
+    void insertNewsIfNotExist(@NonNull List<NewsEntity> newsList) {
 
         // 防御性编程，通常要求入参应该做null判断
         if (newsList == null || newsList.isEmpty()) {
             return;
         }
-        for (News news : newsList) {
+        for (NewsEntity news : newsList) {
 
             if (news == null) continue;
             String headline = news.getHeadline();
@@ -87,9 +87,9 @@ public class NewsDao {
      * @return 返回查询得到时间逆序排列的新闻的List
      */
 
-    List<News> getLatestNews(int numOfPiece, @NonNull String type, long endTime) {
+    List<NewsEntity> getLatestNews(int numOfPiece, @NonNull String type, long endTime) {
 
-        List<News> list = new ArrayList<>();
+        List<NewsEntity> list = new ArrayList<>();
 
         DBHelper helper = DBHelper.getInstance();
 
@@ -108,7 +108,7 @@ public class NewsDao {
                 int timeStamp = cursor.getInt(cursor.getColumnIndex("timeStamp"));
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
 
-                list.add(new News(headline, siteSource, url, type, timeStamp, id));
+                list.add(new NewsEntity(headline, siteSource, url, type, timeStamp, id));
 
             } while (cursor.moveToNext());
         }

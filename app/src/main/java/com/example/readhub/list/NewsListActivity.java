@@ -13,6 +13,8 @@ import com.example.readhub.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.readhub.Constants.CATEGORIES;
+
 
 /**
  * 新闻列表页的Activity
@@ -57,31 +59,15 @@ public class NewsListActivity extends AppCompatActivity {
      */
     private void initFragmentList() {
 
-        //初始化科技新闻页
-        NewsListFragment f1 = new NewsListFragment();
-        f1.setContext(NewsListActivity.this);
-        NewsListPresenter p1 = new NewsListPresenter(NewsListActivity.this, "news");
-        p1.setFragment(f1);
-        f1.setPresenter(p1);
-
-        //初始化开发者资讯页
-        NewsListFragment f2 = new NewsListFragment();
-        f2.setContext(NewsListActivity.this);
-        NewsListPresenter p2 = new NewsListPresenter(NewsListActivity.this, "technews");
-        p2.setFragment(f2);
-        f2.setPresenter(p2);
-
-        //初始化区块链快讯页
-        NewsListFragment f3 = new NewsListFragment();
-        f3.setContext(NewsListActivity.this);
-        NewsListPresenter p3 = new NewsListPresenter(NewsListActivity.this, "blockchain");
-        p3.setFragment(f3);
-        f3.setPresenter(p3);
-
-        //将三个页面加入List
-        mFragmentList.add(f1);
-        mFragmentList.add(f2);
-        mFragmentList.add(f3);
+        for (String category : CATEGORIES) {
+            //初始化每个页面
+            NewsListFragment fragment = new NewsListFragment();
+            fragment.setContext(NewsListActivity.this);
+            NewsListPresenter presenter = new NewsListPresenter(NewsListActivity.this, category);
+            presenter.setFragment(fragment);
+            fragment.setPresenter(presenter);
+            mFragmentList.add(fragment);
+        }
 
         //设置适配器
         mViewPagerFragmentAdapter = new ViewPagerFragmentAdapter(mFragmentManager, mFragmentList);
@@ -96,5 +82,4 @@ public class NewsListActivity extends AppCompatActivity {
         TabLayout mTabLayout = findViewById(R.id.tabs);
         mTabLayout.setupWithViewPager(mViewPager);
     }
-
 }

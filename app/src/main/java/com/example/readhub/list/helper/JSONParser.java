@@ -1,6 +1,6 @@
 package com.example.readhub.list.helper;
 
-import com.example.readhub.data.News;
+import com.example.readhub.data.NewsEntity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +26,7 @@ public class JSONParser {
      * @param type        该新闻的种类
      * @return 当前该类新闻最小的时间戳
      */
-    public static long parseJSONAndReturnMinTime(String dataToParse, String type, List<News> list) {
+    public static long parseJSONAndReturnMinTime(String dataToParse, String type, List<NewsEntity> list) {
 
         long minTimeStamp = Long.MAX_VALUE;
 
@@ -56,7 +56,7 @@ public class JSONParser {
                 long timeStamp = getTimeStamp(publishTime);
 
                 //得到的数据插入List
-                News news = new News(headline, siteSource, url, type, timeStamp, id);
+                NewsEntity news = new NewsEntity(headline, siteSource, url, type, timeStamp, id);
                 list.add(news);
 
                 minTimeStamp = Math.min(minTimeStamp, timeStamp);  //更新最小时间戳

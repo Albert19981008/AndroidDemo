@@ -54,7 +54,7 @@ public class NewsRepository {
      */
     public interface LoadNewsCallback {
 
-        void onNewsLoaded(List<News> newsList);
+        void onNewsLoaded(List<NewsEntity> newsList);
 
         void onDataNotAvailable();
     }
@@ -75,7 +75,7 @@ public class NewsRepository {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                final List<News> newsList = mNewsDao.getLatestNews(numOfPiece, type, endTime);
+                final List<NewsEntity> newsList = mNewsDao.getLatestNews(numOfPiece, type, endTime);
                 mAppExecutors.mainThread().execute(new Runnable() {
                     @Override
                     public void run() {
@@ -113,7 +113,7 @@ public class NewsRepository {
      *
      * @param newsList 要插入的新闻列表
      */
-    public void insertNewsIfNotExist(@NonNull List<News> newsList) {
+    public void insertNewsIfNotExist(@NonNull List<NewsEntity> newsList) {
 
         Runnable runnable = new Runnable() {
             @Override
