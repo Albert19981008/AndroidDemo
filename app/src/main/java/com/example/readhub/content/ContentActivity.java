@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import com.example.readhub.R;
 
+import static com.example.readhub.Constants.HEADLINE;
+import static com.example.readhub.Constants.SITE_SOURCE;
+import static com.example.readhub.Constants.URL;
+
 
 /**
  * 内容展示页，主要作用是打开链接的网页
@@ -52,9 +56,9 @@ public class ContentActivity extends AppCompatActivity {
     private void bindData() {
         //得到文章详细信息
         Intent intent = getIntent();
-        String siteSource = intent.getStringExtra("siteSource");
-        String headline = intent.getStringExtra("headline");
-        String url = intent.getStringExtra("url");
+        String siteSource = intent.getStringExtra(SITE_SOURCE);
+        String headline = intent.getStringExtra(HEADLINE);
+        String url = intent.getStringExtra(URL);
 
         //显示标题和来源
         mHeadLine.setText(headline);

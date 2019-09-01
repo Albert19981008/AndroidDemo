@@ -7,6 +7,13 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.readhub.Constants.HEADLINE;
+import static com.example.readhub.Constants.ID;
+import static com.example.readhub.Constants.SITE_SOURCE;
+import static com.example.readhub.Constants.TIME_STAMP;
+import static com.example.readhub.Constants.TYPE;
+import static com.example.readhub.Constants.URL;
+
 
 /**
  * DAO模式，实现数据层操作
@@ -31,12 +38,12 @@ public class NewsDao {
         if (cursor.moveToFirst()) {
             do {
 
-                String headline = cursor.getString(cursor.getColumnIndex("headline"));
-                String siteSource = cursor.getString(cursor.getColumnIndex("siteSource"));
-                String url = cursor.getString(cursor.getColumnIndex("url"));
-                int timeStamp = cursor.getInt(cursor.getColumnIndex("timeStamp"));
-                String type = cursor.getString(cursor.getColumnIndex("type"));
-                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                String headline = cursor.getString(cursor.getColumnIndex(HEADLINE));
+                String siteSource = cursor.getString(cursor.getColumnIndex(SITE_SOURCE));
+                String url = cursor.getString(cursor.getColumnIndex(URL));
+                int timeStamp = cursor.getInt(cursor.getColumnIndex(TIME_STAMP));
+                String type = cursor.getString(cursor.getColumnIndex(TYPE));
+                int id = cursor.getInt(cursor.getColumnIndex(ID));
 
                 list.add(new NewsEntity(headline, siteSource, url, type, timeStamp, id));
 
@@ -102,11 +109,11 @@ public class NewsDao {
 
         if (cursor.moveToFirst()) {
             do {
-                String headline = cursor.getString(cursor.getColumnIndex("headline"));
-                String siteSource = cursor.getString(cursor.getColumnIndex("siteSource"));
-                String url = cursor.getString(cursor.getColumnIndex("url"));
-                int timeStamp = cursor.getInt(cursor.getColumnIndex("timeStamp"));
-                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                String headline = cursor.getString(cursor.getColumnIndex(HEADLINE));
+                String siteSource = cursor.getString(cursor.getColumnIndex(SITE_SOURCE));
+                String url = cursor.getString(cursor.getColumnIndex(URL));
+                int timeStamp = cursor.getInt(cursor.getColumnIndex(TIME_STAMP));
+                int id = cursor.getInt(cursor.getColumnIndex(ID));
 
                 list.add(new NewsEntity(headline, siteSource, url, type, timeStamp, id));
 

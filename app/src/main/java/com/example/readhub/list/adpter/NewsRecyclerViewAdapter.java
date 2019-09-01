@@ -16,6 +16,10 @@ import com.example.readhub.data.NewsEntity;
 
 import java.util.List;
 
+import static com.example.readhub.Constants.HEADLINE;
+import static com.example.readhub.Constants.SITE_SOURCE;
+import static com.example.readhub.Constants.URL;
+
 
 /**
  * RecyclerView适配器
@@ -68,7 +72,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     /**
      * ViewHolder
      */
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mTvTitle;
         private TextView mTvSiteSource;
@@ -91,9 +95,9 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     private void startContentActivity(int position) {
         Intent intent = new Intent(mContext, ContentActivity.class);
 
-        intent.putExtra("siteSource", mDataList.get(position).getSiteSource());
-        intent.putExtra("headline", mDataList.get(position).getHeadline());
-        intent.putExtra("url", mDataList.get(position).getUrl());
+        intent.putExtra(SITE_SOURCE, mDataList.get(position).getSiteSource());
+        intent.putExtra(HEADLINE, mDataList.get(position).getHeadline());
+        intent.putExtra(URL, mDataList.get(position).getUrl());
 
         mContext.startActivity(intent); //打开内容页
     }

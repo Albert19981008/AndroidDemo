@@ -9,6 +9,9 @@ import org.json.JSONObject;
 import java.time.OffsetDateTime;
 import java.util.List;
 
+import static com.example.readhub.Constants.ID;
+import static com.example.readhub.Constants.URL;
+
 
 /**
  * 用于解析JSON格式数据的类
@@ -16,7 +19,15 @@ import java.util.List;
 public class JSONParser {
 
     //表示解析失败
-    private final static long FAILED = -1;
+    private static final long FAILED = -1;
+
+    private static final String TITLE = "title";
+
+    private static final String DATA = "data";
+
+    private static final String SITE_NAME = "siteName";
+
+    private static final String PUBLISH_DATE = "publishDate";
 
     /**
      * 解析JSON数据并利用时间戳把判断是否在数据库中 如果不在就加入
@@ -32,7 +43,7 @@ public class JSONParser {
 
         try {
             JSONObject jsonObject = new JSONObject(dataToParse);
-            JSONArray jsonArray = jsonObject.optJSONArray("data");
+            JSONArray jsonArray = jsonObject.optJSONArray(DATA);
 
             if (jsonArray == null || jsonArray.length() == 0) {
                 return FAILED;
@@ -43,11 +54,11 @@ public class JSONParser {
 
                 JSONObject obj = jsonArray.optJSONObject(i);
 
-                String headline = obj.optString("title");
-                String siteSource = obj.optString("siteName");
-                String url = obj.optString("url");
-                String publishTime = obj.optString("publishDate");
-                int id = obj.optInt("id");
+                String headline = obj.optString(TITLE);
+                String siteSource = obj.optString(SITE_NAME);
+                String url = obj.optString(URL);
+                String publishTime = obj.optString(PUBLISH_DATE);
+                int id = obj.optInt(ID);
 
                 if (headline.isEmpty() || publishTime.isEmpty() || siteSource.isEmpty() || url.isEmpty()) {
                     return FAILED;

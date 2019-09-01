@@ -13,4 +13,11 @@ public class Constants {
     public static final String TITLE_BLOCK_CHAIN = "区块链快讯";
 
     public static final String[] TITLES = new String[]{TITLE_NEWS, TITLE_TECH_NEWS, TITLE_BLOCK_CHAIN};
+
+    public static final String SITE_SOURCE = "siteSource";
+    public static final String URL = "url";
+    public static final String HEADLINE = "headline";
+    public static final String TIME_STAMP = "timeStamp";
+    public static final String ID = "id";
+    public static final String TYPE = "type";
 }
