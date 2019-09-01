@@ -22,9 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //加载布局
         setContentView(R.layout.activity_main);
-
         initView();
-        startUpdateService();
     }
 
     private void initView() {
@@ -39,12 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    //开启更新新闻的服务
-    private void startUpdateService() {
-        Intent StartServiceIntent = new Intent(this, UpdateService.class);
-        startService(StartServiceIntent);
     }
 }
 

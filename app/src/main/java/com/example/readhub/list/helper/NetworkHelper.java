@@ -25,7 +25,7 @@ public class NetworkHelper {
 
             //指定访问的服务器地址是readHub，并注入当前时间戳
             String URL = "https://api.readhub.cn/" + httpRequestCategory + "?lastCursor=" +
-                    theTimeStamp / 10 + "0000&pageSize=20";
+                    theTimeStamp + "000&pageSize=20";
 
             Request request = new Request.Builder()
                     .url(URL)
