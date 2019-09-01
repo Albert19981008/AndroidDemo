@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
+import static com.example.readhub.Constants.TITLES;
+
 
 /**
  * ViewPager适配器
@@ -15,9 +17,6 @@ public class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
 
     //Fragment列表
     private List<Fragment> mFragmentList;
-
-    //三个栏目的名称
-    private static final String[] TITLES = {"科技动态", "开发者资讯", "区块链快讯"};
 
     public ViewPagerFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull List<Fragment> list) {
         super(fragmentManager);

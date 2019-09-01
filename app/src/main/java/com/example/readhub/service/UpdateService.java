@@ -131,6 +131,6 @@ public class UpdateService extends Service {
 
 
     private static boolean isValidNewsType(int newsType) {
-        return newsType >= 0 && newsType <= 2;
+        return newsType >= 0 && newsType < CATEGORIES.length;
     }
 }
