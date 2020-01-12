@@ -34,4 +34,5 @@ dependencies {
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'org.jetbrains:annotations:15.0'
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
 }

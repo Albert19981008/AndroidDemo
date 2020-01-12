@@ -1,8 +1,10 @@
 package com.example.readhub;
 
 import android.app.Application;
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 
+import com.example.readhub.data.NewsDatabase;
 import com.example.readhub.service.UpdateService;
 
 
@@ -13,9 +15,18 @@ public class ReadHubApplication extends Application {
 
     private static Application sApplication;
 
+    private static NewsDatabase sNewsDatabase;
+
+    private void initDb() {
+        sNewsDatabase = Room
+                .databaseBuilder(this, NewsDatabase.class, "news.db")
+                .build();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        initDb();
         sApplication = this;
         startUpdateService();
     }
@@ -28,5 +39,9 @@ public class ReadHubApplication extends Application {
 
     public static Application getApplication() {
         return sApplication;
+    }
+
+    public static NewsDatabase getsNewsDatabase() {
+        return sNewsDatabase;
     }
 }

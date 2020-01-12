@@ -1,11 +1,15 @@
 package com.example.readhub.data.entity;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 
 /**
  * 数据新闻类
  */
+@Entity(indices = {@Index("mId")})
 public class News {
 
     private String mHeadline;   //文章标题
@@ -18,6 +22,7 @@ public class News {
 
     private long mTimeStamp;    //该文章发布的时间戳
 
+    @PrimaryKey
     private int mId;   //其在网站上的id
 
     public News(@NonNull String headline, @NonNull String siteSource, @NonNull String url, @NonNull String type, long timeStamp, int id) {
