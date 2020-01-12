@@ -78,7 +78,7 @@ public class NewsDao {
             String type = news.getType();
 
             long timeStamp = news.getTimeStamp();
-            int id = news.getID();
+            int id = news.getId();
 
             DBHelper helper = DBHelper.getInstance();
 

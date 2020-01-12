@@ -9,52 +9,52 @@ import android.support.annotation.NonNull;
 /**
  * 数据新闻类
  */
-@Entity(indices = {@Index("mId")})
+@Entity(indices = {@Index("id")})
 public class News {
 
-    private String mHeadline;   //文章标题
+    private String headline;   //文章标题
 
-    private String mUrl;        //文章链接地址
+    private String url;        //文章链接地址
 
-    private String mSiteSource; //文章来源网站
+    private String siteSource; //文章来源网站
 
-    private String mType;       //新闻的种类
+    private String type;       //新闻的种类
 
-    private long mTimeStamp;    //该文章发布的时间戳
+    private long timeStamp;    //该文章发布的时间戳
 
     @PrimaryKey
-    private int mId;   //其在网站上的id
+    private int id;   //其在网站上的id
 
     public News(@NonNull String headline, @NonNull String siteSource, @NonNull String url, @NonNull String type, long timeStamp, int id) {
-        mHeadline = headline;
-        mSiteSource = siteSource;
-        mUrl = url;
-        mType = type;
-        mId = id;
-        mTimeStamp = timeStamp;
+        this.headline = headline;
+        this.siteSource = siteSource;
+        this.url = url;
+        this.type = type;
+        this.id = id;
+        this.timeStamp = timeStamp;
     }
 
     public String getHeadline() {
-        return mHeadline;
+        return headline;
     }
 
     public String getUrl() {
-        return mUrl;
+        return url;
     }
 
     public String getSiteSource() {
-        return mSiteSource;
+        return siteSource;
     }
 
     public String getType() {
-        return mType;
+        return type;
     }
 
     public long getTimeStamp() {
-        return mTimeStamp;
+        return timeStamp;
     }
 
-    public int getID() {
-        return mId;
+    public int getId() {
+        return id;
     }
 }

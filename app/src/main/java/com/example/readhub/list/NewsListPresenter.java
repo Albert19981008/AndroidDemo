@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.readhub.Injection;
+import com.example.readhub.data.DatabaseHelper;
 import com.example.readhub.data.entity.News;
 import com.example.readhub.data.NewsRepository;
 
@@ -18,6 +19,8 @@ import java.util.List;
 public class NewsListPresenter implements NewsListContract.Presenter {
 
     private final NewsRepository mNewsRepository = Injection.provideNewsRepository();
+
+    private final DatabaseHelper mDatabaseHelper = Injection.provideDatabaseHelper();
 
     private Context mContext;
 
