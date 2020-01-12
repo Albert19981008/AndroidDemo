@@ -22,4 +22,7 @@ public interface NewsDao1 {
     @Query("select * from News where timeStamp < :endTime " +
             "and type = :type order by timeStamp desc limit :numOfPiece ")
     List<News> getLatestNews(int numOfPiece, @NonNull String type, long endTime);
+
+    @Query("delete from News where timeStamp < :timeStamp")
+    void deleteOldNews(long timeStamp);
 }

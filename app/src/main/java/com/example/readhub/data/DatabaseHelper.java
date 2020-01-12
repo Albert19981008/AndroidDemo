@@ -1,6 +1,7 @@
 package com.example.readhub.data;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.example.readhub.data.entity.News;
 import com.example.readhub.executor.AppExecutors;
@@ -24,7 +25,7 @@ public final class DatabaseHelper {
     public static DatabaseHelper getInstance(@NonNull AppExecutors appExecutors,
                                              @NonNull NewsDatabase newsDatabase) {
         if (sDatabaseHelper == null) {
-            synchronized (NewsRepository.class) {
+            synchronized (DatabaseHelper.class) {
                 if (sDatabaseHelper == null) {
                     sDatabaseHelper = new DatabaseHelper(appExecutors, newsDatabase);
                 }
@@ -103,5 +104,20 @@ public final class DatabaseHelper {
             }
         };
         appExecutors.networkIO().execute(runnable);
+    }
+
+    /**
+     * 删掉太旧的新闻
+     *
+     * @param timeLimits 这个时间段以前的新闻将不再保留
+     */
+    public void deleteOldNews(long timeLimits) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                newsDatabase.newsDao().deleteOldNews(timeLimits);
+            }
+        };
+        appExecutors.diskIO().execute(runnable);
     }
 }

@@ -40,9 +40,6 @@ public class UpdateService extends Service {
     //已加载每类新闻的时间戳最小值
     private static long[] sTimeStamps = new long[]{TIME_STAMP_NOW, TIME_STAMP_NOW, TIME_STAMP_NOW};
 
-    //NewsRepository
-//    private static final NewsRepository NEWS_REPOSITORY = Injection.provideNewsRepository();
-
     private static final DatabaseHelper DATABASE_HELPER = Injection.provideDatabaseHelper();
 
     //五天的总秒数
