@@ -1,4 +1,4 @@
-package com.example.readhub.data;
+package com.example.readhub.data.entity;
 
 import android.support.annotation.NonNull;
 

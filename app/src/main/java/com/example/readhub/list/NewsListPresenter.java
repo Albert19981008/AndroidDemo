@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.readhub.Injection;
-import com.example.readhub.data.NewsEntity;
+import com.example.readhub.data.entity.NewsEntity;
 import com.example.readhub.data.NewsRepository;
 
 import java.util.ArrayList;

@@ -7,7 +7,7 @@ import com.example.readhub.BaseView;
 
 import java.util.List;
 
-import com.example.readhub.data.NewsEntity;
+import com.example.readhub.data.entity.NewsEntity;
 
 
 /**

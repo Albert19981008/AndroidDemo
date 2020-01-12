@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.readhub.R;
-import com.example.readhub.data.NewsEntity;
+import com.example.readhub.data.entity.NewsEntity;
 import com.example.readhub.list.adpter.NewsRecyclerViewAdapter;
 
 import org.jetbrains.annotations.NotNull;

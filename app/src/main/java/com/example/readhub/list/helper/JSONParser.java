@@ -1,6 +1,6 @@
 package com.example.readhub.list.helper;
 
-import com.example.readhub.data.NewsEntity;
+import com.example.readhub.data.entity.NewsEntity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

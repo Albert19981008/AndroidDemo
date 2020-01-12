@@ -3,6 +3,7 @@ package com.example.readhub.data;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.readhub.data.entity.NewsEntity;
 import com.example.readhub.executor.AppExecutors;
 import com.example.readhub.list.helper.NetworkHelper;
 

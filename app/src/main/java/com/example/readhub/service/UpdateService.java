@@ -9,7 +9,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.readhub.Injection;
-import com.example.readhub.data.NewsEntity;
+import com.example.readhub.data.entity.NewsEntity;
 import com.example.readhub.data.NewsRepository;
 import com.example.readhub.list.helper.JSONParser;
 
