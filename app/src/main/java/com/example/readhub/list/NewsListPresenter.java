@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.readhub.Injection;
-import com.example.readhub.data.DatabaseHelper;
+import com.example.readhub.data.NewsRepository;
 import com.example.readhub.data.NewsCallBackApi;
 import com.example.readhub.data.entity.News;
 
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class NewsListPresenter implements NewsListContract.Presenter {
 
-    private final DatabaseHelper mDatabaseHelper = Injection.provideDatabaseHelper();
+    private final static NewsRepository NEWS_REPOSITORY = Injection.provideNewsRepository();
 
     private Context mContext;
 
@@ -72,7 +72,7 @@ public class NewsListPresenter implements NewsListContract.Presenter {
 
             long endTime = mNewsList.get(mNewsList.size() - 1).getTimeStamp();
 
-            mDatabaseHelper.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime, new NewsCallBackApi() {
+            NEWS_REPOSITORY.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime, new NewsCallBackApi() {
 
                 @Override
                 public void onNewsLoaded(List<News> newsList) {
@@ -139,7 +139,7 @@ public class NewsListPresenter implements NewsListContract.Presenter {
             mFragment.initRecyclerViewAdapter(mContext, mNewsList);
 
             long endTime = System.currentTimeMillis();
-            mDatabaseHelper.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime,
+            NEWS_REPOSITORY.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime,
                     new NewsCallBackApi() {
 
                         //新闻加载成功

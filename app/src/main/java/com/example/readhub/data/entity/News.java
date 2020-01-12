@@ -12,6 +12,9 @@ import android.support.annotation.NonNull;
 @Entity(indices = {@Index("id")})
 public class News {
 
+    @PrimaryKey
+    private int id;   //其在网站上的id
+
     private String headline;   //文章标题
 
     private String url;        //文章链接地址
@@ -21,9 +24,6 @@ public class News {
     private String type;       //新闻的种类
 
     private long timeStamp;    //该文章发布的时间戳
-
-    @PrimaryKey
-    private int id;   //其在网站上的id
 
     public News(@NonNull String headline, @NonNull String siteSource, @NonNull String url, @NonNull String type, long timeStamp, int id) {
         this.headline = headline;

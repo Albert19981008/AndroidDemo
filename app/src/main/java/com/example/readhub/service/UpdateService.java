@@ -9,7 +9,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.readhub.Injection;
-import com.example.readhub.data.DatabaseHelper;
+import com.example.readhub.data.NewsRepository;
 import com.example.readhub.data.entity.News;
 import com.example.readhub.list.helper.JSONParser;
 
@@ -40,7 +40,7 @@ public class UpdateService extends Service {
     //已加载每类新闻的时间戳最小值
     private static long[] sTimeStamps = new long[]{TIME_STAMP_NOW, TIME_STAMP_NOW, TIME_STAMP_NOW};
 
-    private static final DatabaseHelper DATABASE_HELPER = Injection.provideDatabaseHelper();
+    private static final NewsRepository PROVIDE_NEWS_REPOSITORY = Injection.provideNewsRepository();
 
     //五天的总秒数
     private static final long FIVE_DAYS = 5 * 24 * 60 * 60;
@@ -75,7 +75,7 @@ public class UpdateService extends Service {
             return;
         }
 
-        DATABASE_HELPER.loadNewsWithOkHttp(HTTP_REQUESTS[newsType], sTimeStamps[newsType],
+        PROVIDE_NEWS_REPOSITORY.loadNewsWithOkHttp(HTTP_REQUESTS[newsType], sTimeStamps[newsType],
                 new okhttp3.Callback() {
 
                     //请求失败的回调
@@ -95,7 +95,7 @@ public class UpdateService extends Service {
 
                         List<News> list = new ArrayList<>();
                         sTimeStamps[newsType] = JSONParser.parseJSONAndReturnMinTime(res, HTTP_REQUESTS[newsType], list);
-                        DATABASE_HELPER.insertIfNotExists(list);
+                        PROVIDE_NEWS_REPOSITORY.insertIfNotExists(list);
 
                         Message msg = Message.obtain();
                         msg.what = newsType;
@@ -111,8 +111,8 @@ public class UpdateService extends Service {
         for (int value : TYPE_NUM) {
             UpdateService.loadNewsAndInsertIntoDB(value);
         }
-        //删除五天前的数据
-//        NEWS_REPOSITORY.deleteOldNews(FIVE_DAYS);
+        //        删除五天前的数据
+        PROVIDE_NEWS_REPOSITORY.deleteOldNews(FIVE_DAYS);
         return super.onStartCommand(intent, flags, startId);
     }
 

@@ -11,7 +11,7 @@ import com.example.readhub.data.entity.News;
 import java.util.List;
 
 @Dao
-public interface NewsDao1 {
+public interface NewsDao {
 
     @Query("select * from news")
     List<News> getAllNews();

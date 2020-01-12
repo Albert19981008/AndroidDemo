@@ -8,5 +8,5 @@ import com.example.readhub.data.entity.News;
 @Database(entities = {News.class}, version = 1, exportSchema = false)
 public abstract class NewsDatabase extends RoomDatabase {
 
-    public abstract NewsDao1 newsDao();
+    public abstract NewsDao newsDao();
 }

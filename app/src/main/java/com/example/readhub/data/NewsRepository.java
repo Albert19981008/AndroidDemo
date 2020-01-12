@@ -1,7 +1,6 @@
 package com.example.readhub.data;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.example.readhub.data.entity.News;
 import com.example.readhub.executor.AppExecutors;
@@ -9,29 +8,29 @@ import com.example.readhub.list.helper.NetworkHelper;
 
 import java.util.List;
 
-public final class DatabaseHelper {
+public final class NewsRepository {
 
-    private static volatile DatabaseHelper sDatabaseHelper;
+    private static volatile NewsRepository sNewsRepository;
 
     private AppExecutors appExecutors;
 
     private NewsDatabase newsDatabase;
 
-    public DatabaseHelper(AppExecutors appExecutors, NewsDatabase newsDatabase) {
+    public NewsRepository(AppExecutors appExecutors, NewsDatabase newsDatabase) {
         this.appExecutors = appExecutors;
         this.newsDatabase = newsDatabase;
     }
 
-    public static DatabaseHelper getInstance(@NonNull AppExecutors appExecutors,
+    public static NewsRepository getInstance(@NonNull AppExecutors appExecutors,
                                              @NonNull NewsDatabase newsDatabase) {
-        if (sDatabaseHelper == null) {
-            synchronized (DatabaseHelper.class) {
-                if (sDatabaseHelper == null) {
-                    sDatabaseHelper = new DatabaseHelper(appExecutors, newsDatabase);
+        if (sNewsRepository == null) {
+            synchronized (NewsRepository.class) {
+                if (sNewsRepository == null) {
+                    sNewsRepository = new NewsRepository(appExecutors, newsDatabase);
                 }
             }
         }
-        return sDatabaseHelper;
+        return sNewsRepository;
     }
 
     public void getAllNews(NewsCallBackApi callback) {
