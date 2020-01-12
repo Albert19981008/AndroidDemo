@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.readhub.R;
 import com.example.readhub.content.ContentActivity;
-import com.example.readhub.data.entity.NewsEntity;
+import com.example.readhub.data.entity.News;
 
 import java.util.List;
 
@@ -27,11 +27,11 @@ import static com.example.readhub.Constants.URL;
 public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerViewAdapter.ViewHolder> {
 
     //数据列表
-    private List<NewsEntity> mDataList;
+    private List<News> mDataList;
 
     private Context mContext;
 
-    public NewsRecyclerViewAdapter(Context context, List<NewsEntity> list) {
+    public NewsRecyclerViewAdapter(Context context, List<News> list) {
         mContext = context;
         mDataList = list;
     }

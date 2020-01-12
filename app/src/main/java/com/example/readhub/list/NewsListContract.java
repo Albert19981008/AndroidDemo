@@ -7,7 +7,7 @@ import com.example.readhub.BaseView;
 
 import java.util.List;
 
-import com.example.readhub.data.entity.NewsEntity;
+import com.example.readhub.data.entity.News;
 
 
 /**
@@ -21,7 +21,7 @@ public interface NewsListContract {
     interface View extends BaseView<Presenter> {
 
         //初始化RecyclerView适配器
-        void initRecyclerViewAdapter(Context context, List<NewsEntity> newsList);
+        void initRecyclerViewAdapter(Context context, List<News> newsList);
 
         //调整recyclerView的元素个数
         void notifyItemChanged(int begin, int end);

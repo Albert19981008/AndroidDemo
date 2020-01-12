@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 /**
  * 数据新闻类
  */
-public class NewsEntity {
+public class News {
 
     private String mHeadline;   //文章标题
 
@@ -20,7 +20,7 @@ public class NewsEntity {
 
     private int mId;   //其在网站上的id
 
-    public NewsEntity(@NonNull String headline, @NonNull String siteSource, @NonNull String url, @NonNull String type, long timeStamp, int id) {
+    public News(@NonNull String headline, @NonNull String siteSource, @NonNull String url, @NonNull String type, long timeStamp, int id) {
         mHeadline = headline;
         mSiteSource = siteSource;
         mUrl = url;

@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.readhub.R;
-import com.example.readhub.data.entity.NewsEntity;
+import com.example.readhub.data.entity.News;
 import com.example.readhub.list.adpter.NewsRecyclerViewAdapter;
 
 import org.jetbrains.annotations.NotNull;
@@ -109,7 +109,7 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
      * @param newsList 新闻数据列表
      */
     @Override
-    public void initRecyclerViewAdapter(Context context, List<NewsEntity> newsList) {
+    public void initRecyclerViewAdapter(Context context, List<News> newsList) {
 
         mRecyclerViewAdapter = new NewsRecyclerViewAdapter(context, newsList);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);

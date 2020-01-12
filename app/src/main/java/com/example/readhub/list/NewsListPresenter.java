@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.readhub.Injection;
-import com.example.readhub.data.entity.NewsEntity;
+import com.example.readhub.data.entity.News;
 import com.example.readhub.data.NewsRepository;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class NewsListPresenter implements NewsListContract.Presenter {
     private String mHttpRequestCategory;
 
     //存储RecyclerView中的新闻列表
-    private List<NewsEntity> mNewsList;
+    private List<News> mNewsList;
 
     //与之对应的View
     private NewsListFragment mFragment;
@@ -74,7 +74,7 @@ public class NewsListPresenter implements NewsListContract.Presenter {
             mNewsRepository.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime, new NewsRepository.LoadNewsCallback() {
 
                 @Override
-                public void onNewsLoaded(List<NewsEntity> newsList) {
+                public void onNewsLoaded(List<News> newsList) {
                     mNewsList.addAll(newsList);
                     notifyItemChanged();
                     setLoadingStatus(false);
@@ -143,7 +143,7 @@ public class NewsListPresenter implements NewsListContract.Presenter {
 
                         //新闻加载成功
                         @Override
-                        public void onNewsLoaded(List<NewsEntity> newsList) {
+                        public void onNewsLoaded(List<News> newsList) {
                             mNewsList.addAll(newsList);
                             notifyItemChanged();
                             setLoadingStatus(false);

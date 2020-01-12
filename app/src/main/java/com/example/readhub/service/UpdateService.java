@@ -9,7 +9,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.readhub.Injection;
-import com.example.readhub.data.entity.NewsEntity;
+import com.example.readhub.data.entity.News;
 import com.example.readhub.data.NewsRepository;
 import com.example.readhub.list.helper.JSONParser;
 
@@ -94,7 +94,7 @@ public class UpdateService extends Service {
                         }
                         String res = response.body().string();  //得到JSON格式的String
 
-                        List<NewsEntity> list = new ArrayList<>();
+                        List<News> list = new ArrayList<>();
                         sTimeStamps[newsType] = JSONParser.parseJSONAndReturnMinTime(res, HTTP_REQUESTS[newsType], list);
                         NEWS_REPOSITORY.insertNewsIfNotExist(list);
 
