@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 
 import com.example.readhub.Injection;
 import com.example.readhub.data.DatabaseHelper;
+import com.example.readhub.data.NewsCallBackApi;
 import com.example.readhub.data.entity.News;
-import com.example.readhub.data.NewsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,6 @@ import java.util.List;
  * MVP模式中Presenter的实现
  */
 public class NewsListPresenter implements NewsListContract.Presenter {
-
-    private final NewsRepository mNewsRepository = Injection.provideNewsRepository();
 
     private final DatabaseHelper mDatabaseHelper = Injection.provideDatabaseHelper();
 
@@ -74,7 +72,7 @@ public class NewsListPresenter implements NewsListContract.Presenter {
 
             long endTime = mNewsList.get(mNewsList.size() - 1).getTimeStamp();
 
-            mNewsRepository.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime, new NewsRepository.LoadNewsCallback() {
+            mDatabaseHelper.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime, new NewsCallBackApi() {
 
                 @Override
                 public void onNewsLoaded(List<News> newsList) {
@@ -141,8 +139,8 @@ public class NewsListPresenter implements NewsListContract.Presenter {
             mFragment.initRecyclerViewAdapter(mContext, mNewsList);
 
             long endTime = System.currentTimeMillis();
-            mNewsRepository.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime,
-                    new NewsRepository.LoadNewsCallback() {
+            mDatabaseHelper.getLatestNews(PAGE_SIZE, mHttpRequestCategory, endTime,
+                    new NewsCallBackApi() {
 
                         //新闻加载成功
                         @Override

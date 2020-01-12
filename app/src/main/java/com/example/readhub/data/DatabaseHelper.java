@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.example.readhub.data.entity.News;
 import com.example.readhub.executor.AppExecutors;
+import com.example.readhub.list.helper.NetworkHelper;
 
 import java.util.List;
 
@@ -73,5 +74,34 @@ public final class DatabaseHelper {
             }
         };
         appExecutors.diskIO().execute(runnable);
+    }
+
+    public void insertIfNotExists(List<News> newsList) {
+        appExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                newsDatabase.newsDao().insertNews(newsList);
+            }
+        });
+    }
+
+    /**
+     * 从网络加载数据
+     *
+     * @param httpRequest  需要注入的HTTP请求（新闻类型）
+     * @param theTimeStamp 得到在此时间戳之前的新闻
+     * @param callback     回调接口
+     */
+    public void loadNewsWithOkHttp(@NonNull String httpRequest,
+                                   long theTimeStamp,
+                                   @NonNull okhttp3.Callback callback) {
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                NetworkHelper.loadNewsWithOkHttp(httpRequest, theTimeStamp, callback);
+            }
+        };
+        appExecutors.networkIO().execute(runnable);
     }
 }

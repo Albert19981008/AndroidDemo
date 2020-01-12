@@ -9,8 +9,8 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.readhub.Injection;
+import com.example.readhub.data.DatabaseHelper;
 import com.example.readhub.data.entity.News;
-import com.example.readhub.data.NewsRepository;
 import com.example.readhub.list.helper.JSONParser;
 
 import java.io.IOException;
@@ -41,7 +41,9 @@ public class UpdateService extends Service {
     private static long[] sTimeStamps = new long[]{TIME_STAMP_NOW, TIME_STAMP_NOW, TIME_STAMP_NOW};
 
     //NewsRepository
-    private static final NewsRepository NEWS_REPOSITORY = Injection.provideNewsRepository();
+//    private static final NewsRepository NEWS_REPOSITORY = Injection.provideNewsRepository();
+
+    private static final DatabaseHelper DATABASE_HELPER = Injection.provideDatabaseHelper();
 
     //五天的总秒数
     private static final long FIVE_DAYS = 5 * 24 * 60 * 60;
@@ -76,7 +78,7 @@ public class UpdateService extends Service {
             return;
         }
 
-        NEWS_REPOSITORY.loadNewsWithOkHttp(HTTP_REQUESTS[newsType], sTimeStamps[newsType],
+        DATABASE_HELPER.loadNewsWithOkHttp(HTTP_REQUESTS[newsType], sTimeStamps[newsType],
                 new okhttp3.Callback() {
 
                     //请求失败的回调
@@ -96,7 +98,7 @@ public class UpdateService extends Service {
 
                         List<News> list = new ArrayList<>();
                         sTimeStamps[newsType] = JSONParser.parseJSONAndReturnMinTime(res, HTTP_REQUESTS[newsType], list);
-                        NEWS_REPOSITORY.insertNewsIfNotExist(list);
+                        DATABASE_HELPER.insertIfNotExists(list);
 
                         Message msg = Message.obtain();
                         msg.what = newsType;
@@ -113,7 +115,7 @@ public class UpdateService extends Service {
             UpdateService.loadNewsAndInsertIntoDB(value);
         }
         //删除五天前的数据
-        NEWS_REPOSITORY.deleteOldNews(FIVE_DAYS);
+//        NEWS_REPOSITORY.deleteOldNews(FIVE_DAYS);
         return super.onStartCommand(intent, flags, startId);
     }
 

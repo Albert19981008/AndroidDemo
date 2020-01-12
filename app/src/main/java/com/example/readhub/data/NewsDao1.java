@@ -17,7 +17,7 @@ public interface NewsDao1 {
     List<News> getAllNews();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertCities(News... news);
+    void insertNews(List<News> newsList);
 
     @Query("select * from News where timeStamp < :endTime " +
             "and type = :type order by timeStamp desc limit :numOfPiece ")
