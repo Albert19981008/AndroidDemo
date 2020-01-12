@@ -8,12 +8,19 @@ import com.example.readhub.list.helper.NetworkHelper;
 
 import java.util.List;
 
+
+/**
+ * 新闻仓库
+ * 利用网络或者 DB 处理数据
+ */
 public final class NewsRepository {
 
     private static volatile NewsRepository sNewsRepository;
 
+    // 线程池
     private AppExecutors appExecutors;
 
+    // 数据库
     private NewsDatabase newsDatabase;
 
     public NewsRepository(AppExecutors appExecutors, NewsDatabase newsDatabase) {

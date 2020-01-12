@@ -111,14 +111,14 @@ public class UpdateService extends Service {
         for (int value : TYPE_NUM) {
             UpdateService.loadNewsAndInsertIntoDB(value);
         }
-        //        删除五天前的数据
+        // 删除五天前的数据
         PROVIDE_NEWS_REPOSITORY.deleteOldNews(FIVE_DAYS);
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
-        //退出时丢掉所有消息 防内存泄漏
+        // 退出时丢掉所有消息 防内存泄漏
         mHandler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
